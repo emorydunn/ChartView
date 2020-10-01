@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct MiniMultiLineChartView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    var data:[MultiLineChartData]
+    var data: [MultiLineChartData]
 //    public var title: String
 //    public var legend: String?
     public var style: ChartStyle
@@ -20,7 +20,7 @@ public struct MiniMultiLineChartView: View {
     @State private var touchLocation:CGPoint = .zero
     @State private var showIndicatorDot: Bool = false
     @State private var currentValue: Double = 2 {
-        didSet{
+        didSet {
             if (oldValue != self.currentValue && showIndicatorDot) {
                 HapticFeedback.playSelection()
             }
@@ -28,14 +28,14 @@ public struct MiniMultiLineChartView: View {
         }
     }
     
-    var globalMin:Double {
+    var globalMin: Double {
         if let min = data.flatMap({$0.onlyPoints()}).min() {
             return min
         }
         return 0
     }
     
-    var globalMax:Double {
+    var globalMax: Double {
         if let max = data.flatMap({$0.onlyPoints()}).max() {
             return max
         }
@@ -72,10 +72,11 @@ public struct MiniMultiLineChartView: View {
                          index: i)
                 }
             }
+            
         }
         .frame(width: frame.width, height: frame.height)
 //        .clipShape(RoundedRectangle(cornerRadius: 20))
-//        .offset(x: 0, y: -10)
+
     }
     
 //    @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
@@ -95,7 +96,12 @@ public struct MiniMultiLineChartView: View {
 struct MiniMultiWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MiniMultiLineChartView(data: [([8,23,54,32,12,37,7,23,43], GradientColors.orange)], form: ChartForm.large)
+            MiniMultiLineChartView(
+                data: [
+                    ([4925, 4650, 5225, 2500, 566, 11325, 0, 2035, 4500], GradientColors.orange),
+                    ([4720, 4925, 2650, 6000, 3375, 566, 2325, 9000, 3025], GradientColors.blue)
+                ],
+                form: ChartForm.large)
                 .environment(\.colorScheme, .light)
         }
     }
