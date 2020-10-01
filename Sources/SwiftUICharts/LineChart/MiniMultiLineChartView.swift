@@ -58,8 +58,8 @@ public struct MiniMultiLineChartView: View {
     }
     
     public var body: some View {
-        GeometryReader{ geometry in
-            ZStack{
+        GeometryReader { geometry in
+            ZStack {
                 ForEach(0..<self.data.count) { i in
                     Line(data: self.data[i],
                          frame: .constant(geometry.frame(in: .local)),
@@ -74,8 +74,8 @@ public struct MiniMultiLineChartView: View {
             }
         }
         .frame(width: frame.width, height: frame.height)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
-        .offset(x: 0, y: 0)
+//        .clipShape(RoundedRectangle(cornerRadius: 20))
+//        .offset(x: 0, y: -10)
     }
     
 //    @discardableResult func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
@@ -95,7 +95,7 @@ public struct MiniMultiLineChartView: View {
 struct MiniMultiWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MiniMultiLineChartView(data: [([8,23,54,32,12,37,7,23,43], GradientColors.orange)])
+            MiniMultiLineChartView(data: [([8,23,54,32,12,37,7,23,43], GradientColors.orange)], form: ChartForm.large)
                 .environment(\.colorScheme, .light)
         }
     }
